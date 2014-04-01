@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.app.db.ConnectionWithDB;
 import com.app.db.model.Pacient;
@@ -18,6 +20,7 @@ public class PacientGateway {
     // CRUD Statements
     private static String CREATE_STATEMENT = "insert into patient  values (?,?,?,?,?,?)";
     private static String READ_BY_ID_STATEMENT = "select * from patient where idpatient = ?";
+    private static String READ_ALL_PATIENT_STATEMENT = "select * from patient";
     private static String UPDATE_BY_ID_STATEMENT = "update patient set client_name = ?, address = ? where idpatient=? ";
     private static String REMOVE_STATEMENT = "delete from patient where idpatient = ?";
 
@@ -92,6 +95,34 @@ public class PacientGateway {
         }
         return true;
 
+    }
+
+    public List<Pacient> getAllPacients() {
+        List<Pacient> pacientList = new ArrayList<Pacient>();
+        Connection con = ConnectionWithDB.getInstance();
+
+        try {
+
+            PreparedStatement getStatement = con.prepareStatement(READ_ALL_PATIENT_STATEMENT);
+            ResultSet result = getStatement.executeQuery();
+            while (result.next()) {
+                Pacient pacient = new Pacient();
+                pacient.setId(result.getInt("idpatient"));
+                pacient.setName(result.getString("client_name"));
+                pacient.setCnp(result.getString("cnp"));
+                pacient.setIdentitiCard(result.getString("identity_card"));
+                pacient.setBirth(result.getDate("birth"));
+                pacient.setAddress(result.getString("address"));
+
+                pacientList.add(pacient);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Pacients cannot be retrived from DB!!");
+            return null;
+        }
+
+        return pacientList.size() != 0 ? pacientList : null;
     }
 
     public boolean removePacient(final int id) {
