@@ -1,7 +1,7 @@
 package com.app.db.model;
 
 public class Secretary extends User {
-
+	
 
     public void addOrUpdatePatient(Pacient patient) {
     	
