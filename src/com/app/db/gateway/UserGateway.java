@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.app.db.ConnectionWithDB;
 import com.app.db.model.User;
 import com.app.exception.DatabaseException;
 
@@ -18,7 +19,7 @@ public class UserGateway {
     private static String REMOVE_STATEMENT = "delete from user where id = ?";
 
     public boolean addUser(final User userToAdd) throws DatabaseException {
-        Connection con = ConnectionToDb.getConnection();
+        Connection con = ConnectionWithDB.getInstance();
 
         try {
             PreparedStatement addStatement = con.prepareStatement(CREATE_STATEMENT);
@@ -39,7 +40,7 @@ public class UserGateway {
     }
 
     public User getUserById(final int id) {
-        Connection con = ConnectionToDb.getConnection();
+        Connection con = ConnectionWithDB.getInstance();
 
         try {
             PreparedStatement getStatement = con.prepareStatement(READ_BY_ID_STATEMENT);
