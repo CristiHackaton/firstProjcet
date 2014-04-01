@@ -65,11 +65,11 @@ public class UserGateway {
 
     }
 
-    public User getUserById(final String username) {
+    public User getUserByName(final String username) {
         Connection con = ConnectionWithDB.getInstance();
 
         try {
-            PreparedStatement getStatement = con.prepareStatement(READ_BY_ID_STATEMENT);
+            PreparedStatement getStatement = con.prepareStatement(READ_BY_ID_USER_NAME);
             getStatement.setString(0, username);
             ResultSet result = getStatement.executeQuery();
 
@@ -86,10 +86,9 @@ public class UserGateway {
                 return null;
             }
         } catch (SQLException e) {
-            System.out.println("User cannot be found with usernam " + username);
+            System.out.println("User cannot be found with username " + username);
             return null;
         }
-
     }
 
 }
