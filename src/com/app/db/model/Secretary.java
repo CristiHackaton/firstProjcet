@@ -3,21 +3,21 @@ package com.app.db.model;
 public class Secretary extends User {
 
 
-    public void addOrUpdatePatient(Patient patient) {
+    public void addOrUpdatePatient(Pacient patient) {
     	
     }
     
-    public void deletePatient(Patient patient) {
+    public void deletePatient(Pacient patient) {
     	
     }
     
-    public Patient getPatientByCNP(String cnp) {
+    public Pacient getPatientByCNP(String cnp) {
     	// Dummy data for now
-    	return  new Patient();
+    	return  new Pacient();
     }
     
-    public Patient getPatientByName(String name) {
+    public Pacient getPatientByName(String name) {
     	// Dummy data for now
-    	return  new Patient();
+    	return  new Pacient();
     }
 }

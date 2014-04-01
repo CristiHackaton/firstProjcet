@@ -1,5 +1,12 @@
 package com.app.db.model;
 
-public class Pacient {
+import java.util.Date;
 
+public class Pacient {
+	public int id; 
+	public String name;
+	public String cnp;
+	public String identitiCard;
+	public Date birth; 
+	public String address;
 }
