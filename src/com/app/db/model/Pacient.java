@@ -2,63 +2,63 @@ package com.app.db.model;
 
 import java.util.Date;
 
-public class Pacient implements Model{
-	private int id; 
-	private String name;
-	private String cnp;
-	private String identitiCard;
-	private Date birth; 
-	private String address;
+public class Pacient implements Model {
+    private int id;
+    private String name;
+    private String cnp;
+    private String identitiCard;
+    private Date birth;
+    private String address;
 
-public Pacient(){
-	
-}
+    public Pacient() {
 
-public int getId() {
-	return id;
-}
+    }
 
-public void setId(int id) {
-	this.id = id;
-}
+    public int getId() {
+        return id;
+    }
 
-public String getName() {
-	return name;
-}
+    public void setId(final int id) {
+        this.id = id;
+    }
 
-public void setName(String name) {
-	this.name = name;
-}
+    public String getName() {
+        return name;
+    }
 
-public String getCnp() {
-	return cnp;
-}
+    public void setName(final String name) {
+        this.name = name;
+    }
 
-public void setCnp(String cnp) {
-	this.cnp = cnp;
-}
+    public String getCnp() {
+        return cnp;
+    }
 
-public String getIdentitiCard() {
-	return identitiCard;
-}
+    public void setCnp(final String cnp) {
+        this.cnp = cnp;
+    }
 
-public void setIdentitiCard(String identitiCard) {
-	this.identitiCard = identitiCard;
-}
+    public String getIdentitiCard() {
+        return identitiCard;
+    }
 
-public Date getBirth() {
-	return birth;
-}
+    public void setIdentitiCard(final String identitiCard) {
+        this.identitiCard = identitiCard;
+    }
 
-public void setBirth(Date birth) {
-	this.birth = birth;
-}
+    public Date getBirth() {
+        return birth;
+    }
 
-public String getAddress() {
-	return address;
-}
+    public void setBirth(final Date birth) {
+        this.birth = birth;
+    }
 
-public void setAddress(String address) {
-	this.address = address;
-}
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(final String address) {
+        this.address = address;
+    }
 }

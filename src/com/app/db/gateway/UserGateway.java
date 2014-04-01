@@ -17,6 +17,9 @@ public class UserGateway {
     private static String UPDATE_BY_ID_STATEMENT = "update user set user_name = ?, password = ?, email = ? where isUser=? ";
     private static String REMOVE_STATEMENT = "delete from user where idUser = ?";
 
+    public UserGateway() {
+    }
+
     public boolean addUser(final User userToAdd) {
         Connection con = ConnectionWithDB.getInstance();
 
