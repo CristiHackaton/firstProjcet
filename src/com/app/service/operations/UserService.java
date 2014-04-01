@@ -2,12 +2,16 @@ package com.app.service.operations;
 
 import com.app.db.model.Model;
 
-public class ConsultationService extends AbstractOperationService {
+public class UserService extends AbstractOperationService {
 
-	private static ConsultationService conService;
+	private static UserService userService ;
 	
-	private ConsultationService(){
+	private UserService(){
 		
+	}
+	
+	public boolean Login(Model user){
+		return false;
 	}
 	
 	public boolean create(Model user) {
@@ -25,12 +29,13 @@ public class ConsultationService extends AbstractOperationService {
 	public boolean update(Model user) {
 		return false;
 	}
-
+	
 	public static AbstractOperationService getInstance() {
-		if(ConsultationService.conService == null)
+		if(UserService.userService == null)
 		{
-			ConsultationService.conService = new ConsultationService();
+			UserService.userService = new UserService();
 		}
-		return ConsultationService.conService;
+		return UserService.userService;
 	}
+
 }

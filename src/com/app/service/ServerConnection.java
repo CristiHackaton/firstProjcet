@@ -5,20 +5,23 @@ import java.util.List;
 
 import com.app.db.model.User;
 import com.app.service.communication.CommunicationService;
-import com.app.service.communication.OperationService;
+import com.app.service.operations.ConsultationService;
+import com.app.service.operations.AbstractOperationService;
+import com.app.service.operations.PacientService;
+import com.app.service.operations.UserService;
 
 public class ServerConnection {
 
-	private final CommunicationService comService = new CommunicationService();
-	//private final OperationService opService = new OperationService();
-
 	private List<User> acceptedUsers = new ArrayList<User>();
-
-	public OperationService getOperationService(User user) {
-		//if(user.isAdmin())
-		//	return this.opService;
-		//if(user.isDoctor())
-		//	return this.
+	
+	public AbstractOperationService getOperationService(User user) {
+		if(user.isAdmin())
+			return UserService.getInstance(); 
+		if(user.isDoctor())
+			return ConsultationService.getInstance(); 
+		if(user.isSecretary())
+			return PacientService.getInstance(); 
+		//impossible
 		return null;
 	}
 
