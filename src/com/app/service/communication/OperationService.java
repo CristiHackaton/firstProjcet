@@ -1,11 +1,13 @@
 package com.app.service.communication;
 
-import com.app.db.model.Pacient;
-import com.app.db.model.User;
+import com.app.db.model.Model;
+
 
 public abstract class OperationService {	
 	
-	//public boolean abstract create();
-	
+	public abstract boolean create(Model model);
+	public abstract boolean read(Model model);
+	public abstract boolean delete(Model model);
+	public abstract boolean update(Model model);
 	
 }

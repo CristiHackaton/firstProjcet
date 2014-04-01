@@ -1,23 +1,23 @@
 package com.app.service.operations;
 
-import com.app.db.model.User;
+import com.app.db.model.Model;
 import com.app.service.communication.OperationService;
 
 public class UserOperations extends OperationService {
 
-	public boolean createUser(User user) {
+	public boolean create(Model user) {
 		return false;
 	}
 
-	public boolean readUser(User user) {
+	public boolean read(Model user) {
 		return false;
 	}
 
-	public boolean deleteUser(User user) {
+	public boolean delete(Model user) {
 		return false;
 	}
 
-	public boolean updateUser(User user) {
+	public boolean update(Model user) {
 		return false;
 	}
 

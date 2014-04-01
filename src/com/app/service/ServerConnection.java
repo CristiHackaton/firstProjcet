@@ -17,7 +17,8 @@ public class ServerConnection {
 	public OperationService getOperationService(User user) {
 		//if(user.isAdmin())
 		//	return this.opService;
-		//if(is)
+		//if(user.isDoctor())
+		//	return this.
 		return null;
 	}
 
