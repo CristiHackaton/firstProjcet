@@ -12,10 +12,10 @@ public class UserGateway {
 
     // CRUD Statements
     private static String CREATE_STATEMENT = "insert into user values (?,?,?,?,?)";
-    private static String READ_BY_ID_STATEMENT = "select * from user where id = ?";
-    private static String READ_BY_ID_USER_NAME = "select * from user where user_name = ?";
-    private static String UPDATE_BY_COLUMN_STATEMENT = "update user set user_name = ?, password = ?, email = ? where ?=? ";
-    private static String REMOVE_STATEMENT = "delete from user where id = ?";
+    private static String READ_BY_ID_STATEMENT = "select * from user where idUser = ?";
+    private static String READ_BY_ID_USER_NAME_PASSWORD = "select * from user where user_name = ? and password = ?";
+    private static String UPDATE_BY_ID_STATEMENT = "update user set user_name = ?, password = ?, email = ? where isUser=? ";
+    private static String REMOVE_STATEMENT = "delete from user where idUser = ?";
 
     public boolean addUser(final User userToAdd) {
         Connection con = ConnectionWithDB.getInstance();
@@ -65,12 +65,13 @@ public class UserGateway {
 
     }
 
-    public User getUserByName(final String username) {
+    public User getUserByNameAndPassword(final String username, final String password) {
         Connection con = ConnectionWithDB.getInstance();
 
         try {
-            PreparedStatement getStatement = con.prepareStatement(READ_BY_ID_USER_NAME);
+            PreparedStatement getStatement = con.prepareStatement(READ_BY_ID_USER_NAME_PASSWORD);
             getStatement.setString(0, username);
+            getStatement.setString(1, password);
             ResultSet result = getStatement.executeQuery();
 
             if (result.first()) {
@@ -89,6 +90,42 @@ public class UserGateway {
             System.out.println("User cannot be found with username " + username);
             return null;
         }
+    }
+
+    public boolean updateUser(final User us) {
+        Connection con = ConnectionWithDB.getInstance();
+
+        try {
+
+            PreparedStatement updateStatement = con.prepareStatement(UPDATE_BY_ID_STATEMENT);
+            updateStatement.setString(0, us.getUsername());
+            updateStatement.setString(1, us.getPassword());
+            updateStatement.setString(2, us.getEmail());
+            updateStatement.setInt(4, us.getUserID());
+            updateStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("User cannot be updated with username " + us.getUsername());
+            return false;
+        }
+        return true;
+
+    }
+
+    public boolean removeUser(final int id) {
+        Connection con = ConnectionWithDB.getInstance();
+        try {
+
+            PreparedStatement deleteStatement = con.prepareStatement(REMOVE_STATEMENT);
+            deleteStatement.setInt(0, id);
+
+            deleteStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("User cannot be removed with id " + id);
+            return false;
+        }
+
+        return true;
     }
 
 }
