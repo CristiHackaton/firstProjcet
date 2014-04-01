@@ -2,76 +2,63 @@ package com.app.db.model;
 
 import java.util.Date;
 
-public class Consultation implements Model{
-	private Date consultationDate; 
-	private Date duration;
-	private int id;
-	private int patientId;
-	private int doctorId;
-	private String notes;
-	
+public class Consultation implements Model {
+    private Date consultationDate;
+    private float duration;
+    private int id;
+    private Pacient pacient;
+    private Doctor doctor;
+    private String notes;
 
-public Consultation(){
-	
-}
+    public Consultation() {
 
+    }
 
-public Date getConsultationDate() {
-	return consultationDate;
-}
+    public Date getConsultationDate() {
+        return consultationDate;
+    }
 
+    public void setConsultationDate(final Date consultationDate) {
+        this.consultationDate = consultationDate;
+    }
 
-public void setConsultationDate(Date consultationDate) {
-	this.consultationDate = consultationDate;
-}
+    public float getDuration() {
+        return duration;
+    }
 
+    public void setDuration(final float duration) {
+        this.duration = duration;
+    }
 
-public Date getDuration() {
-	return duration;
-}
+    public int getId() {
+        return id;
+    }
 
+    public void setId(final int id) {
+        this.id = id;
+    }
 
-public void setDuration(Date duration) {
-	this.duration = duration;
-}
+    public Pacient getPacient() {
+        return pacient;
+    }
 
+    public void setPacient(final Pacient pacient) {
+        this.pacient = pacient;
+    }
 
-public int getId() {
-	return id;
-}
+    public Doctor getDoctor() {
+        return doctor;
+    }
 
+    public void setDoctor(final Doctor doctor) {
+        this.doctor = doctor;
+    }
 
-public void setId(int id) {
-	this.id = id;
-}
+    public String getNotes() {
+        return notes;
+    }
 
-
-public int getPatientId() {
-	return patientId;
-}
-
-
-public void setPatientId(int patientId) {
-	this.patientId = patientId;
-}
-
-
-public int getDoctorId() {
-	return doctorId;
-}
-
-
-public void setDoctorId(int doctorId) {
-	this.doctorId = doctorId;
-}
-
-
-public String getNotes() {
-	return notes;
-}
-
-
-public void setNotes(String notes) {
-	this.notes = notes;
-}
+    public void setNotes(final String notes) {
+        this.notes = notes;
+    }
 }
