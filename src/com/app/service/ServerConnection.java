@@ -7,18 +7,15 @@ import com.app.db.model.User;
 import com.app.service.communication.CommunicationService;
 import com.app.service.communication.OperationService;
 
-public class Service {
+public class ServerConnection {
 
 	private final CommunicationService comService = new CommunicationService();
 	private final OperationService opService = new OperationService();
 
 	private List<User> acceptedUsers = new ArrayList<User>();
 
-	public CommunicationService getCommunicationService() {
-		return this.comService;
-	}
-
-	public OperationService getOperationService() {
+	public OperationService getOperationService(User user) {
+		if(user.is)
 		return this.opService;
 	}
 
