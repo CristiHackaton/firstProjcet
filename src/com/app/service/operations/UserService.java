@@ -1,19 +1,16 @@
 package com.app.service.operations;
 
 import com.app.db.model.Model;
+import com.app.db.model.User;
 
 public class UserService extends AbstractOperationService {
 
-	private static UserService userService ;
-	
-	private UserService(){
-		
+	private static UserService userService;
+
+	private UserService() {
+
 	}
-	
-	public boolean Login(Model user){
-		return false;
-	}
-	
+
 	public boolean create(Model user) {
 		return false;
 	}
@@ -29,10 +26,9 @@ public class UserService extends AbstractOperationService {
 	public boolean update(Model user) {
 		return false;
 	}
-	
+
 	public static AbstractOperationService getInstance() {
-		if(UserService.userService == null)
-		{
+		if (UserService.userService == null) {
 			UserService.userService = new UserService();
 		}
 		return UserService.userService;
