@@ -2,7 +2,7 @@ package com.app.db.model;
 
 import java.util.Date;
 
-public class Consultation {
+public class Consultation implements Model{
 	private Date consultationDate; 
 	private Date duration;
 	private int id;
