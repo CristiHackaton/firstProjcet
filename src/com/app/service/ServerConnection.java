@@ -15,7 +15,7 @@ public class ServerConnection {
 	private List<User> acceptedUsers = new ArrayList<User>();
 
 	public OperationService getOperationService(User user) {
-		if(user.is)
+		//if(user.is)
 		return this.opService;
 	}
 
