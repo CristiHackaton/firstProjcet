@@ -1,6 +1,6 @@
 package com.app.db.model;
 
-public class User {
+public class User implements Model{
     private int userID;
     private String username;
     private String email;

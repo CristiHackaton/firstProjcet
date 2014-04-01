@@ -1,8 +1,9 @@
 package com.app.service.operations;
 
 import com.app.db.model.User;
+import com.app.service.communication.OperationService;
 
-public class UserOperations {
+public class UserOperations extends OperationService {
 
 	public boolean createUser(User user) {
 		return false;

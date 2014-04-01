@@ -2,7 +2,7 @@ package com.app.db.model;
 
 import java.util.Date;
 
-public class Pacient {
+public class Pacient implements Model{
 	private int id; 
 	private String name;
 	private String cnp;

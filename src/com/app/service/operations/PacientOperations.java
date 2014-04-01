@@ -1,8 +1,9 @@
 package com.app.service.operations;
 
 import com.app.db.model.Pacient;
+import com.app.service.communication.OperationService;
 
-public class PacientOperations {
+public class PacientOperations extends OperationService {
 	public boolean createPacient(Pacient pacient) {
 		return false;
 	}
