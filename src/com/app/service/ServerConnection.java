@@ -15,10 +15,10 @@ public class ServerConnection {
 	private List<User> acceptedUsers = new ArrayList<User>();
 
 	public OperationService getOperationService(User user) {
-		//if(user.isAdmin())
-		//	return this.opService;
-		//if(is)
-		return null;
+		if(user.isAdmin())
+			return this.opService;
+		if(user.isDoctor())
+			return this.
 	}
 
 }

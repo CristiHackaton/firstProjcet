@@ -1,11 +1,10 @@
 package com.app.service.operations;
 
 import com.app.db.model.Model;
-import com.app.db.model.Pacient;
 import com.app.service.communication.OperationService;
 
-public class PacientOperations extends OperationService {
-	
+public class ConsultationService extends OperationService {
+
 	public boolean create(Model user) {
 		return false;
 	}
