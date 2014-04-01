@@ -6,7 +6,7 @@ public class User {
     private String email;
     private int userType;
     private String password;
-
+   
     public User() {
 
     }
@@ -51,17 +51,26 @@ public class User {
         this.password = password;
     }
     
-    public boolean isDoctor()
-    {
-    	return true;
+    
+   
+    public boolean isDoctor(){
+    	
+    	if (userType==1){
+    		return true;
+    	}else return false;
     }
     
     public boolean isAdmin(){
-    	return true;
+    	if (userType==0){
+    		return true;
+    	}else return false;
     }
     
-    public boolean isSecretary()
-    {
-    	return true;
-    }
+    public boolean isSecretary(){
+    if (userType==2){
+		return true;
+	}else return false;
+}
+    
+    
 }
