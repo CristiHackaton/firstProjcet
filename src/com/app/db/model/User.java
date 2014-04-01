@@ -1,53 +1,53 @@
 package com.app.db.model;
 
 public class User {
-	private int userID;
-	private String username;
-	private String email;
-	private int userType;
-	private String password;
-	
-public User(){
-	
-}
-	
-	public int getUserID() {
-		return userID;
-	}
+    private int userID;
+    private String username;
+    private String email;
+    private int userType;
+    private String password;
 
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
+    public User() {
 
-	public String getUsername() {
-		return username;
-	}
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public int getUserID() {
+        return userID;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setUserID(final int userID) {
+        this.userID = userID;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public int getUserType() {
-		return userType;
-	}
+    public void setUsername(final String username) {
+        this.username = username;
+    }
 
-	public void setUserType(int userType) {
-		this.userType = userType;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(final int userType) {
+        this.userType = userType;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
+    }
 }
