@@ -50,4 +50,18 @@ public class User {
     public void setPassword(final String password) {
         this.password = password;
     }
+    
+    public boolean isDoctor()
+    {
+    	return true;
+    }
+    
+    public boolean isAdmin(){
+    	return true;
+    }
+    
+    public boolean isSecretary()
+    {
+    	return true;
+    }
 }
