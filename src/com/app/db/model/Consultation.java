@@ -11,7 +11,7 @@ public class Consultation {
 	private String notes;
 	
 
-Consultation(){
+public Consultation(){
 	
 }
 

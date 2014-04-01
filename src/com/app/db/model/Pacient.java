@@ -10,7 +10,7 @@ public class Pacient {
 	private Date birth; 
 	private String address;
 
-Pacient(){
+public Pacient(){
 	
 }
 

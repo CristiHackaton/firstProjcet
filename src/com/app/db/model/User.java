@@ -7,9 +7,9 @@ public class User {
 	private int userType;
 	private String password;
 	
-	User(){
-		
-	}
+public User(){
+	
+}
 	
 	public int getUserID() {
 		return userID;
