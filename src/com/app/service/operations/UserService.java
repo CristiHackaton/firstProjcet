@@ -7,7 +7,7 @@ public class UserService extends AbstractOperationService {
 
 	private static UserService userService;
 
-	private UserService() {
+	public UserService() {
 
 	}
 
@@ -26,12 +26,13 @@ public class UserService extends AbstractOperationService {
 	public boolean update(Model user) {
 		return false;
 	}
-
+	
 	public static AbstractOperationService getInstance() {
 		if (UserService.userService == null) {
 			UserService.userService = new UserService();
 		}
 		return UserService.userService;
 	}
+	
 
 }

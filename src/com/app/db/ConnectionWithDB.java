@@ -11,7 +11,7 @@ import java.sql.SQLException;
 			  private ConnectionWithDB(){
 				  try {
 					Class.forName("com.mysql.jdbc.Driver");
-					connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/Bank?"
+					connect =  (Connection) DriverManager.getConnection("jdbc:mysql://localhost/Clinic?"
 							+ "user=root&password=root");
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
@@ -22,7 +22,7 @@ import java.sql.SQLException;
 			  }
 			  public static Connection getInstance(){
 				  if(connect==null){
-					  new ConnectionWithDB();
+					new ConnectionWithDB();
 				  }
 				  return connect;  
 			  }
