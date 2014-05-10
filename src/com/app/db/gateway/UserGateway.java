@@ -73,8 +73,8 @@ public class UserGateway {
 
         try {
             PreparedStatement getStatement = con.prepareStatement(READ_BY_ID_USER_NAME_PASSWORD);
-            getStatement.setString(0, username);
-            getStatement.setString(1, password);
+            getStatement.setString(1, username);
+            getStatement.setString(2, password);
             ResultSet result = getStatement.executeQuery();
 
             if (result.first()) {
