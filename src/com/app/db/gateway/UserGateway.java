@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.app.db.ConnectionWithDB;
+import com.app.db.model.Pacient;
 import com.app.db.model.User;
 
 public class UserGateway {
@@ -16,7 +18,8 @@ public class UserGateway {
     private static String READ_BY_ID_USER_NAME_PASSWORD = "select * from user where user_name = ? and password = ?";
     private static String UPDATE_BY_ID_STATEMENT = "update user set user_name = ?, password = ?, email = ? where isUser=? ";
     private static String REMOVE_STATEMENT = "delete from user where idUser = ?";
-
+    private static String GET_ALL_USERS = "select * from user";
+    
     public UserGateway() {
     }
 
@@ -130,5 +133,32 @@ public class UserGateway {
 
         return true;
     }
+
+	public ArrayList<User> getAllUsers() {
+		ArrayList<User> usersList = new ArrayList<User>();
+        Connection con = ConnectionWithDB.getInstance();
+
+        try {
+
+            PreparedStatement getStatement = con.prepareStatement(GET_ALL_USERS);
+            ResultSet result = getStatement.executeQuery();
+            while (result.next()) {
+               User user = new User();
+               user.setUserID(result.getInt("idUser"));
+               user.setUsername(result.getString("user_name"));
+               user.setPassword(result.getString("password"));
+               user.setEmail(result.getString("email"));
+               user.setUserType(result.getInt("type"));
+               usersList.add(user);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Users cannot be retrived from DB!!");
+            return null;
+        }
+
+        return usersList.size() != 0 ? usersList : null;
+		
+	}
 
 }

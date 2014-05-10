@@ -16,7 +16,7 @@ public class SocketRequest implements Model{
 	private boolean needsResponse;
 	
 	
-	public SocketRequest(User user, String typeOfRequest, Model parameter, boolean needsResponse) {
+	public SocketRequest(User user, String typeOfRequest, Serializable parameter, boolean needsResponse) {
 		super();
 		this.user = user;
 		this.typeOfRequest = typeOfRequest;

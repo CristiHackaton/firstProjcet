@@ -97,8 +97,8 @@ public class PacientGateway {
 
     }
 
-    public List<Pacient> getAllPacients() {
-        List<Pacient> pacientList = new ArrayList<Pacient>();
+    public ArrayList<Pacient> getAllPacients() {
+        ArrayList<Pacient> pacientList = new ArrayList<Pacient>();
         Connection con = ConnectionWithDB.getInstance();
 
         try {

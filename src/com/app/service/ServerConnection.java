@@ -6,7 +6,10 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
+import com.app.db.model.Consultation;
+import com.app.db.model.Pacient;
 import com.app.db.model.RequestType;
 import com.app.db.model.SocketRequest;
 import com.app.db.model.User;
@@ -61,6 +64,21 @@ public class ServerConnection {
 			User loggedUser = AbstractOperationService.login(user);
 			SocketRequest response = new SocketRequest(loggedUser, RequestType.LOGIN, loggedUser, false);
 			return response;
+		}
+		else if (sock.getTypeOfRequest().equals(RequestType.GET_ALL_PACIENTI)){
+			SocketRequest response = new SocketRequest(sock.getUser(), RequestType.GET_ALL_PACIENTI, PacientService.getInstance().getAllPatitens(), false);
+			return response;
+		} else if (sock.getTypeOfRequest().equals(RequestType.GET_ALL_USER)){
+			SocketRequest response = new SocketRequest(sock.getUser(), RequestType.GET_ALL_USER, UserService.getInstance().getAllUsers(), false);
+			return response;
+		} else if (sock.getTypeOfRequest().equals(RequestType.ADD_USER)){
+			UserService.getInstance().addUser((User) sock.getParameter());
+		} else if (sock.getTypeOfRequest().equals(RequestType.UPDATE_USER)){
+			UserService.getInstance().updateUser((User) sock.getParameter());
+		} else if (sock.getTypeOfRequest().equals(RequestType.DELETE_USER)){
+			UserService.getInstance().deleteUser((User) sock.getParameter());
+		} else if (sock.getTypeOfRequest().equals(RequestType.ADD_CONSULTATION_DETAILS)){
+			ConsultationService.getInstance().updateConsultation((Consultation) sock.getParameter());
 		}
 		return sock;
 	}

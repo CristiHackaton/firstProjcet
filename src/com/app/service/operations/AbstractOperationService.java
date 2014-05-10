@@ -1,5 +1,8 @@
 package com.app.service.operations;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import com.app.db.gateway.UserGateway;
 import com.app.db.model.Model;
 import com.app.db.model.User;
@@ -10,10 +13,10 @@ public abstract class AbstractOperationService {
 	//use this for implementing Services
 	protected static UserGateway userGateway = new UserGateway();
 	
-	public abstract boolean create(Model model);
-	public abstract boolean read(Model model);
-	public abstract boolean delete(Model model);
-	public abstract boolean update(Model model);
+//	public abstract boolean create(Model model);
+//	public abstract boolean read(Model model);
+//	public abstract boolean delete(Model model);
+//	public abstract boolean update(Model model);
 
 	public static User login(Model user) {
 		User existingUser = null;
