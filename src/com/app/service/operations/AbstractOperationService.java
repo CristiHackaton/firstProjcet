@@ -15,7 +15,7 @@ public abstract class AbstractOperationService {
 	public abstract boolean delete(Model model);
 	public abstract boolean update(Model model);
 
-	public static User Login(Model user) {
+	public static User login(Model user) {
 		User existingUser = null;
 		if (user instanceof User) {
 			User prettendingUser = (User) user;

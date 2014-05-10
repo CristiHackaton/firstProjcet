@@ -59,7 +59,7 @@ public class LoginScreen extends JFrame {
 				String username=userName.getText();
 				String pass=password.getText();
 				User user=new User();
-				userService.Login(user);
+				userService.login(user);
 				if(user!=null){
 					closeScreen();
 					if(user.isDoctor()){

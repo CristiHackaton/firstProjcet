@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import com.app.db.model.RequestType;
 import com.app.db.model.SocketRequest;
 import com.app.db.model.User;
 import com.app.service.operations.AbstractOperationService;
@@ -55,13 +56,18 @@ public class ServerConnection {
 	}
 
 	private static SocketRequest parseRequest(SocketRequest sock) {
-		//TODO needs implementation
+		if (sock.getTypeOfRequest().equals(RequestType.LOGIN)){
+			User user = sock.getUser();
+			User loggedUser = AbstractOperationService.login(user);
+			SocketRequest response = new SocketRequest(loggedUser, RequestType.LOGIN, loggedUser, false);
+			return response;
+		}
 		return sock;
 	}
 
 	public AbstractOperationService getOperationService(User user) {
 		// login user
-		User existingUser = AbstractOperationService.Login(user);
+		User existingUser = AbstractOperationService.login(user);
 		// select associated service
 		if (existingUser.isAdmin())
 			return UserService.getInstance();
