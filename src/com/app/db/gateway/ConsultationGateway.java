@@ -63,7 +63,7 @@ public class ConsultationGateway {
                 Consultation consultation = new Consultation();
                 consultation.setId(result.getInt("idconsultation"));
                 consultation.setDoctor((Doctor)usGateway.getUserById(result.getInt("iduser")));
-                consultation.setDuration(result.getFloat("duraction"));
+                consultation.setDuration(result.getFloat("duration"));
                 consultation.setConsultationDate(result.getDate("date_of_consultation"));
                 consultation.setNotes(result.getString("notes"));
                 consultation.setPacient(pcGateway.getPacientById(result.getInt("idPatient")));
@@ -93,7 +93,7 @@ public class ConsultationGateway {
                 Consultation consultation = new Consultation();
                 consultation.setId(result.getInt("idconsultation"));
                 consultation.setDoctor((Doctor)usGateway.getUserById(result.getInt("iduser")));
-                consultation.setDuration(result.getFloat("duraction"));
+                consultation.setDuration(result.getFloat("duration"));
                 consultation.setConsultationDate(result.getDate("date_of_consultation"));
                 consultation.setNotes(result.getString("notes"));
                 consultation.setPacient(pcGateway.getPacientById(result.getInt("idPatient")));
@@ -160,8 +160,8 @@ public class ConsultationGateway {
 
 	                Consultation consultation = new Consultation();
 	                consultation.setId(result.getInt("idconsultation"));
-	                consultation.setDoctor((Doctor)usGateway.getUserById(result.getInt("iduser")));
-	                consultation.setDuration(result.getFloat("duraction"));
+	                consultation.setDoctor(usGateway.getUserById(result.getInt("iduser")));
+	                consultation.setDuration(result.getFloat("duration"));
 	                consultation.setConsultationDate(result.getDate("date_of_consultation"));
 	                consultation.setNotes(result.getString("notes"));
 	                consultation.setPacient(pcGateway.getPacientById(result.getInt("idPatient")));
@@ -170,6 +170,7 @@ public class ConsultationGateway {
 	            }
 	        } catch (SQLException e) {
 	            System.out.println("Consultation cannot be found with id " + id);
+	            e.printStackTrace();
 	        }
 	        return consultList;
 		

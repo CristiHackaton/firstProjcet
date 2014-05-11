@@ -60,7 +60,7 @@ public class PacientGateway {
 		try {
 			PreparedStatement getStatement = con
 					.prepareStatement(READ_BY_ID_STATEMENT);
-			getStatement.setInt(0, id);
+			getStatement.setInt(1, id);
 			ResultSet result = getStatement.executeQuery();
 
 			if (result.first()) {
@@ -79,6 +79,7 @@ public class PacientGateway {
 			}
 		} catch (SQLException e) {
 			System.out.println("Pacient cannot be found with id " + id);
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -90,9 +91,9 @@ public class PacientGateway {
 
 			PreparedStatement updateStatement = con
 					.prepareStatement(UPDATE_BY_ID_STATEMENT);
-			updateStatement.setString(0, pacient.getName());
-			updateStatement.setString(1, pacient.getAddress());
-			updateStatement.setInt(2, pacient.getId());
+			updateStatement.setString(1, pacient.getName());
+			updateStatement.setString(2, pacient.getAddress());
+			updateStatement.setInt(3, pacient.getId());
 			updateStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -139,7 +140,7 @@ public class PacientGateway {
 
 			PreparedStatement deleteStatement = con
 					.prepareStatement(REMOVE_STATEMENT);
-			deleteStatement.setInt(0, id);
+			deleteStatement.setInt(1, id);
 
 			deleteStatement.executeUpdate();
 		} catch (SQLException e) {
