@@ -34,7 +34,7 @@ public class ServerConnection {
 							socket.getInputStream());
 					try {
 						SocketRequest sock = (SocketRequest) in.readObject();
-						System.out.println(sock.getUser().getUsername());
+//						System.out.println(sock.getUser().getUsername());
 						if (sock.isNeedsResponse()) {
 							System.out.println("needs server response");
 
@@ -136,6 +136,7 @@ public class ServerConnection {
 			SocketRequest response = new SocketRequest(sock.getUser(),
 					RequestType.GET_ALL_CONSULTATIONS,
 					ConsultationService.getInstance().getAllConsultations(), false);
+			return response;
 		}
 		 else if (sock.getTypeOfRequest().equals(
 				RequestType.GET_ALL_DOCTORS)) {

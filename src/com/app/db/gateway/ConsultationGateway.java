@@ -92,7 +92,7 @@ public class ConsultationGateway {
             while (result.next()) {
                 Consultation consultation = new Consultation();
                 consultation.setId(result.getInt("idconsultation"));
-                consultation.setDoctor((Doctor)usGateway.getUserById(result.getInt("iduser")));
+                consultation.setDoctor(usGateway.getUserById(result.getInt("iduser")));
                 consultation.setDuration(result.getFloat("duration"));
                 consultation.setConsultationDate(result.getDate("date_of_consultation"));
                 consultation.setNotes(result.getString("notes"));
