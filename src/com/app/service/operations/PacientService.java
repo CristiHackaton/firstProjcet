@@ -6,6 +6,7 @@ import java.util.List;
 import com.app.db.gateway.PacientGateway;
 import com.app.db.model.Model;
 import com.app.db.model.Pacient;
+import com.app.db.model.User;
 
 public class PacientService extends AbstractOperationService {
 
@@ -42,5 +43,10 @@ public class PacientService extends AbstractOperationService {
 			PacientService.patService = new PacientService();
 		}
 		return PacientService.patService;
+	}
+
+	public ArrayList<Pacient> getPatientsForDoctor(User user) {
+		return pacientGateway.getPatientsForDoctor(user.getUserID());
+		
 	}
 }

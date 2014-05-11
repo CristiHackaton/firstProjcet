@@ -14,7 +14,8 @@ import com.app.db.model.Doctor;
 
 public class ConsultationGateway {
 
-    // CRUD Statements
+	// CRUD Statements
+	private static final String READ_BY_PACIENT_ID_STATEMENT = "select * from consultation where idPatientf = ?";
     private static String CREATE_STATEMENT = "insert into consultation  values (?,?,?,?,?,?)";
     private static String READ_BY_ID_STATEMENT = "select * from consultation where idconsultation = ?";
     private static String READ_ALL_PATIENT_STATEMENT = "select * from consultation";
@@ -129,12 +130,12 @@ public class ConsultationGateway {
         return true;
     }
 
-    public boolean removePacient(final int id) {
+    public boolean removeConsultation(final int id) {
         Connection con = ConnectionWithDB.getInstance();
         try {
 
             PreparedStatement deleteStatement = con.prepareStatement(REMOVE_STATEMENT);
-            deleteStatement.setInt(0, id);
+            deleteStatement.setInt(1, id);
 
             deleteStatement.executeUpdate();
         } catch (SQLException e) {
@@ -144,5 +145,34 @@ public class ConsultationGateway {
 
         return true;
     }
+
+	public ArrayList<Consultation> getConsultationByPacientId(int id) {
+		 Connection con = ConnectionWithDB.getInstance();
+		 ArrayList<Consultation> consultList = new ArrayList<>();
+	        try {
+	            PreparedStatement getStatement = con.prepareStatement(READ_BY_PACIENT_ID_STATEMENT);
+	            getStatement.setInt(1, id);
+	            ResultSet result = getStatement.executeQuery();
+
+	            while (result.next()) {
+	                UserGateway usGateway = new UserGateway();
+	                PacientGateway pcGateway = new PacientGateway();
+
+	                Consultation consultation = new Consultation();
+	                consultation.setId(result.getInt("idconsultation"));
+	                consultation.setDoctor((Doctor)usGateway.getUserById(result.getInt("iduser")));
+	                consultation.setDuration(result.getFloat("duraction"));
+	                consultation.setConsultationDate(result.getDate("date_of_consultation"));
+	                consultation.setNotes(result.getString("notes"));
+	                consultation.setPacient(pcGateway.getPacientById(result.getInt("idPatient")));
+
+	                consultList.add(consultation);
+	            }
+	        } catch (SQLException e) {
+	            System.out.println("Consultation cannot be found with id " + id);
+	        }
+	        return consultList;
+		
+	}
 
 }

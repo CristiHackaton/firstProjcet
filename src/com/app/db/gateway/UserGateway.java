@@ -16,7 +16,7 @@ public class UserGateway {
     private static String CREATE_STATEMENT = "insert into user values (?,?,?,?,?)";
     private static String READ_BY_ID_STATEMENT = "select * from user where idUser = ?";
     private static String READ_BY_ID_USER_NAME_PASSWORD = "select * from user where user_name = ? and password = ?";
-    private static String UPDATE_BY_ID_STATEMENT = "update user set user_name = ?, password = ?, email = ? where isUser=? ";
+    private static String UPDATE_BY_ID_STATEMENT = "update user set user_name = ?, password = ?, email = ? where idUser=? ";
     private static String REMOVE_STATEMENT = "delete from user where idUser = ?";
     private static String GET_ALL_USERS = "select * from user";
     
@@ -28,16 +28,17 @@ public class UserGateway {
 
         try {
             PreparedStatement addStatement = con.prepareStatement(CREATE_STATEMENT);
-            addStatement.setInt(0, userToAdd.getUserID());
-            addStatement.setString(1, userToAdd.getUsername());
-            addStatement.setString(2, userToAdd.getPassword());
-            addStatement.setString(3, userToAdd.getEmail());
-            addStatement.setInt(4, userToAdd.getUserType());
+            addStatement.setInt(1, userToAdd.getUserID());
+            addStatement.setString(2, userToAdd.getUsername());
+            addStatement.setString(3, userToAdd.getPassword());
+            addStatement.setString(4, userToAdd.getEmail());
+            addStatement.setInt(5, userToAdd.getUserType());
 
             addStatement.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println("User cannot be added!");
+            e.printStackTrace();
             return false;
         }
 
@@ -49,7 +50,7 @@ public class UserGateway {
 
         try {
             PreparedStatement getStatement = con.prepareStatement(READ_BY_ID_STATEMENT);
-            getStatement.setInt(0, id);
+            getStatement.setInt(1, id);
             ResultSet result = getStatement.executeQuery();
 
             if (result.first()) {
@@ -104,14 +105,15 @@ public class UserGateway {
         try {
 
             PreparedStatement updateStatement = con.prepareStatement(UPDATE_BY_ID_STATEMENT);
-            updateStatement.setString(0, us.getUsername());
-            updateStatement.setString(1, us.getPassword());
-            updateStatement.setString(2, us.getEmail());
+            updateStatement.setString(1, us.getUsername());
+            updateStatement.setString(2, us.getPassword());
+            updateStatement.setString(3, us.getEmail());
             updateStatement.setInt(4, us.getUserID());
             updateStatement.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println("User cannot be updated with username " + us.getUsername());
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -123,7 +125,7 @@ public class UserGateway {
         try {
 
             PreparedStatement deleteStatement = con.prepareStatement(REMOVE_STATEMENT);
-            deleteStatement.setInt(0, id);
+            deleteStatement.setInt(1, id);
 
             deleteStatement.executeUpdate();
         } catch (SQLException e) {

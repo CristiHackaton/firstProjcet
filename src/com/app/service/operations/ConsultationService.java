@@ -1,8 +1,11 @@
 package com.app.service.operations;
 
+import java.util.ArrayList;
+
 import com.app.db.gateway.ConsultationGateway;
 import com.app.db.model.Consultation;
 import com.app.db.model.Model;
+import com.app.db.model.Pacient;
 
 public class ConsultationService extends AbstractOperationService {
 
@@ -33,6 +36,10 @@ public class ConsultationService extends AbstractOperationService {
 	public void updateConsultation(Consultation consultation){
 		consGateway.updateConsultation(consultation);
 	}
+	public ArrayList<Consultation> getAllConsultationsForPacient(Pacient pacient){
+		return consGateway.getConsultationByPacientId(pacient.getId());
+	}
+	
 	public static ConsultationService getInstance() {
 		if(ConsultationService.conService == null)
 		{

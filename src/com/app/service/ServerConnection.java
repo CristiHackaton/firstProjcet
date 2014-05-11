@@ -37,13 +37,15 @@ public class ServerConnection {
 						System.out.println(sock.getUser().getUsername());
 						if (sock.isNeedsResponse()) {
 							System.out.println("needs server response");
-							
+
 							ObjectOutputStream out = new ObjectOutputStream(
 									socket.getOutputStream());
-							
+
 							SocketRequest response = parseRequest(sock);
 							out.writeObject(response);
 							out.flush();
+						} else {
+							parseRequest(sock);
 						}
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
@@ -59,27 +61,51 @@ public class ServerConnection {
 	}
 
 	private static SocketRequest parseRequest(SocketRequest sock) {
-		if (sock.getTypeOfRequest().equals(RequestType.LOGIN)){
+		System.out.println(">>>>>>>> " + sock.getTypeOfRequest() + "<<<<<<<<");
+		if (sock.getTypeOfRequest().equals(RequestType.LOGIN)) {
 			User user = sock.getUser();
 			User loggedUser = AbstractOperationService.login(user);
-			SocketRequest response = new SocketRequest(loggedUser, RequestType.LOGIN, loggedUser, false);
+			SocketRequest response = new SocketRequest(loggedUser,
+					RequestType.LOGIN, loggedUser, false);
 			return response;
-		}
-		else if (sock.getTypeOfRequest().equals(RequestType.GET_ALL_PACIENTI)){
-			SocketRequest response = new SocketRequest(sock.getUser(), RequestType.GET_ALL_PACIENTI, PacientService.getInstance().getAllPatitens(), false);
+		} else if (sock.getTypeOfRequest().equals(RequestType.GET_ALL_PACIENTI)) {
+			SocketRequest response = new SocketRequest(sock.getUser(),
+					RequestType.GET_ALL_PACIENTI, PacientService.getInstance()
+							.getAllPatitens(), false);
 			return response;
-		} else if (sock.getTypeOfRequest().equals(RequestType.GET_ALL_USER)){
-			SocketRequest response = new SocketRequest(sock.getUser(), RequestType.GET_ALL_USER, UserService.getInstance().getAllUsers(), false);
+		} else if (sock.getTypeOfRequest().equals(RequestType.GET_ALL_USER)) {
+			SocketRequest response = new SocketRequest(sock.getUser(),
+					RequestType.GET_ALL_USER, UserService.getInstance()
+							.getAllUsers(), false);
 			return response;
-		} else if (sock.getTypeOfRequest().equals(RequestType.ADD_USER)){
+		} else if (sock.getTypeOfRequest().equals(RequestType.ADD_USER)) {
 			UserService.getInstance().addUser((User) sock.getParameter());
-		} else if (sock.getTypeOfRequest().equals(RequestType.UPDATE_USER)){
+		} else if (sock.getTypeOfRequest().equals(RequestType.UPDATE_USER)) {
 			UserService.getInstance().updateUser((User) sock.getParameter());
-		} else if (sock.getTypeOfRequest().equals(RequestType.DELETE_USER)){
+		} else if (sock.getTypeOfRequest().equals(RequestType.DELETE_USER)) {
 			UserService.getInstance().deleteUser((User) sock.getParameter());
-		} else if (sock.getTypeOfRequest().equals(RequestType.ADD_CONSULTATION_DETAILS)){
-			ConsultationService.getInstance().updateConsultation((Consultation) sock.getParameter());
-		}
+		} else if (sock.getTypeOfRequest().equals(
+				RequestType.ADD_CONSULTATION_DETAILS)) {
+			
+			ConsultationService.getInstance().updateConsultation(
+					(Consultation) sock.getParameter());
+		} else if (sock.getTypeOfRequest().equals(
+				RequestType.GET_ALL_PACIENTI_FOR_DOCTOR)) {
+			
+			SocketRequest response = new SocketRequest(sock.getUser(),
+					RequestType.GET_ALL_PACIENTI_FOR_DOCTOR,
+					PacientService.getInstance().getPatientsForDoctor(
+							sock.getUser()), false);
+			return response;
+		} else if (sock.getTypeOfRequest().equals(
+				RequestType.GET_ALL_CONSULTATIONS_PACIENT)) {
+			
+			SocketRequest response = new SocketRequest(sock.getUser(),
+					RequestType.GET_ALL_CONSULTATIONS_PACIENT,
+					ConsultationService.getInstance().getAllConsultationsForPacient(
+							(Pacient) sock.getParameter()), false);
+			return response;
+		} 
 		return sock;
 	}
 
