@@ -49,4 +49,13 @@ public class PacientService extends AbstractOperationService {
 		return pacientGateway.getPatientsForDoctor(user.getUserID());
 		
 	}
+
+	public void createPacient(Pacient parameter) {
+		pacientGateway.addPacient(parameter);
+		
+	}
+	public void updatePacient(Pacient parameter) {
+		pacientGateway.updatePacient(parameter);
+		
+	}
 }

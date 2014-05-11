@@ -105,7 +105,40 @@ public class ServerConnection {
 					ConsultationService.getInstance().getAllConsultationsForPacient(
 							(Pacient) sock.getParameter()), false);
 			return response;
+		} else if (sock.getTypeOfRequest().equals(
+				RequestType.ADD_PACIENT)) {
+			
+			PacientService.getInstance().createPacient(
+					(Pacient) sock.getParameter());
+		} else if (sock.getTypeOfRequest().equals(
+				RequestType.UPDATE_PACIENT)) {
+			
+			PacientService.getInstance().updatePacient(
+					(Pacient) sock.getParameter());
+		} else if (sock.getTypeOfRequest().equals(
+				RequestType.CREATE_CONSULTATION)) {
+			
+			ConsultationService.getInstance().addConsultation(
+					(Consultation) sock.getParameter());
+		} else if (sock.getTypeOfRequest().equals(
+				RequestType.UPDATE_CONSULTATION)) {
+			
+			ConsultationService.getInstance().updateConsultation(
+					(Consultation) sock.getParameter());
+		} else if (sock.getTypeOfRequest().equals(
+				RequestType.DELETE_CONSULTATION)) {
+			
+			ConsultationService.getInstance().removeConsultation(
+					(Consultation) sock.getParameter());
+		} else if (sock.getTypeOfRequest().equals(
+				RequestType.GET_ALL_CONSULTATIONS)) {
+			
+			SocketRequest response = new SocketRequest(sock.getUser(),
+					RequestType.GET_ALL_CONSULTATIONS,
+					ConsultationService.getInstance().getAllConsultations(), false);
+			return response;
 		} 
+		
 		return sock;
 	}
 

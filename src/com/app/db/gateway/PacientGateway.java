@@ -36,13 +36,13 @@ public class PacientGateway {
 		try {
 			PreparedStatement addStatement = con
 					.prepareStatement(CREATE_STATEMENT);
-			addStatement.setInt(0, pacientToAdd.getId());
-			addStatement.setString(1, pacientToAdd.getName());
-			addStatement.setString(2, pacientToAdd.getCnp());
-			addStatement.setString(3, pacientToAdd.getIdentitiCard());
+			addStatement.setInt(1, pacientToAdd.getId());
+			addStatement.setString(2, pacientToAdd.getName());
+			addStatement.setString(3, pacientToAdd.getCnp());
+			addStatement.setString(4, pacientToAdd.getIdentitiCard());
 			addStatement
-					.setDate(4, new Date(pacientToAdd.getBirth().getTime()));
-			addStatement.setString(5, pacientToAdd.getAddress());
+					.setDate(5, new Date(pacientToAdd.getBirth().getTime()));
+			addStatement.setString(6, pacientToAdd.getAddress());
 
 			addStatement.executeUpdate();
 

@@ -15,7 +15,7 @@ import com.app.db.model.Doctor;
 public class ConsultationGateway {
 
 	// CRUD Statements
-	private static final String READ_BY_PACIENT_ID_STATEMENT = "select * from consultation where idPatientf = ?";
+	private static final String READ_BY_PACIENT_ID_STATEMENT = "select * from consultation where idPatient = ?";
     private static String CREATE_STATEMENT = "insert into consultation  values (?,?,?,?,?,?)";
     private static String READ_BY_ID_STATEMENT = "select * from consultation where idconsultation = ?";
     private static String READ_ALL_PATIENT_STATEMENT = "select * from consultation";
@@ -31,12 +31,12 @@ public class ConsultationGateway {
 
         try {
             PreparedStatement addStatement = con.prepareStatement(CREATE_STATEMENT);
-            addStatement.setInt(0, consultation.getId());
-            addStatement.setInt(1, consultation.getDoctor().getUserID());
-            addStatement.setFloat(2, consultation.getDuration());
-            addStatement.setDate(3, new Date(consultation.getConsultationDate().getTime()));
-            addStatement.setInt(4, consultation.getPacient().getId());
-            addStatement.setString(5, consultation.getNotes());
+            addStatement.setInt(1, consultation.getId());
+            addStatement.setInt(2, consultation.getDoctor().getUserID());
+            addStatement.setFloat(3, consultation.getDuration());
+            addStatement.setDate(4, new Date(consultation.getConsultationDate().getTime()));
+            addStatement.setInt(5, consultation.getPacient().getId());
+            addStatement.setString(6, consultation.getNotes());
 
             addStatement.executeUpdate();
 
@@ -53,7 +53,7 @@ public class ConsultationGateway {
 
         try {
             PreparedStatement getStatement = con.prepareStatement(READ_BY_ID_STATEMENT);
-            getStatement.setInt(0, id);
+            getStatement.setInt(1, id);
             ResultSet result = getStatement.executeQuery();
 
             if (result.first()) {
@@ -78,8 +78,8 @@ public class ConsultationGateway {
         }
     }
 
-    public List<Consultation> getAllConsultations() {
-        List<Consultation> consultationList = new ArrayList<Consultation>();
+    public ArrayList<Consultation> getAllConsultations() {
+        ArrayList<Consultation> consultationList = new ArrayList<Consultation>();
         Connection con = ConnectionWithDB.getInstance();
 
         try {
@@ -116,11 +116,11 @@ public class ConsultationGateway {
         try {
 
             PreparedStatement updateStatement = con.prepareStatement(UPDATE_BY_ID_STATEMENT);
-            updateStatement.setFloat(0, consultation.getDuration());
-            updateStatement.setDate(1, new Date(consultation.getConsultationDate().getTime()));
-            updateStatement.setInt(2, consultation.getDoctor().getUserID());
-            updateStatement.setString(3, consultation.getNotes());
-            updateStatement.setInt(4, consultation.getId());
+            updateStatement.setFloat(1, consultation.getDuration());
+            updateStatement.setDate(2, new Date(consultation.getConsultationDate().getTime()));
+            updateStatement.setInt(3, consultation.getDoctor().getUserID());
+            updateStatement.setString(4, consultation.getNotes());
+            updateStatement.setInt(5, consultation.getId());
 
             updateStatement.executeUpdate();
         } catch (SQLException e) {

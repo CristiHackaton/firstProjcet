@@ -1,5 +1,6 @@
 package com.app.service.operations;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.app.db.gateway.ConsultationGateway;
@@ -46,5 +47,19 @@ public class ConsultationService extends AbstractOperationService {
 			ConsultationService.conService = new ConsultationService();
 		}
 		return ConsultationService.conService;
+	}
+
+	public void addConsultation(Consultation parameter) {
+		consGateway.addConsulation(parameter);
+		
+	}
+	
+	public void removeConsultation(Consultation parameter) {
+		consGateway.removeConsultation(parameter.getId());
+		
+	}
+
+	public ArrayList<Consultation> getAllConsultations() {
+		return  consGateway.getAllConsultations();
 	}
 }
