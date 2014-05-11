@@ -1,7 +1,9 @@
 package com.app.service.operations;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.app.db.model.Doctor;
 import com.app.db.model.Model;
 import com.app.db.model.User;
 
@@ -50,6 +52,11 @@ public class UserService extends AbstractOperationService {
 			UserService.userService = new UserService();
 		}
 		return UserService.userService;
+	}
+
+	public ArrayList<Doctor> getAllDoctors() {
+		// TODO Auto-generated method stub
+		return userGateway.getAllDoctors();
 	}
 	
 

@@ -7,8 +7,7 @@ import com.app.service.ServerConnection;
 public class ControllerServer {
 
 	public static void main(String[] args) {
-//		LoginScreen log=new LoginScreen();
-//		log.setVisible(true);
+		
 		try {
 			ServerConnection.startServer();
 		} catch (IOException e) {

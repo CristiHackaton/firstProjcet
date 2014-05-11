@@ -136,6 +136,13 @@ public class ServerConnection {
 			SocketRequest response = new SocketRequest(sock.getUser(),
 					RequestType.GET_ALL_CONSULTATIONS,
 					ConsultationService.getInstance().getAllConsultations(), false);
+		}
+		 else if (sock.getTypeOfRequest().equals(
+				RequestType.GET_ALL_DOCTORS)) {
+			
+			SocketRequest response = new SocketRequest(sock.getUser(),
+					RequestType.GET_ALL_DOCTORS,
+					UserService.getInstance().getAllDoctors(), false);
 			return response;
 		} 
 		

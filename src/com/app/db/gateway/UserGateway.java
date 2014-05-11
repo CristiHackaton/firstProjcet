@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.app.db.ConnectionWithDB;
+import com.app.db.model.Doctor;
 import com.app.db.model.Pacient;
 import com.app.db.model.User;
+
 
 public class UserGateway {
 
@@ -19,6 +21,7 @@ public class UserGateway {
     private static String UPDATE_BY_ID_STATEMENT = "update user set user_name = ?, password = ?, email = ? where idUser=? ";
     private static String REMOVE_STATEMENT = "delete from user where idUser = ?";
     private static String GET_ALL_USERS = "select * from user";
+    private static String GET_ALL_DOCTORS="select * from user where type=1";
     
     public UserGateway() {
     }
@@ -160,6 +163,35 @@ public class UserGateway {
         }
 
         return usersList.size() != 0 ? usersList : null;
+		
+	}
+
+	public ArrayList<Doctor> getAllDoctors() {
+		// TODO Auto-generated method stub
+		ArrayList<Doctor> usersList = new ArrayList<Doctor>();
+        Connection con = ConnectionWithDB.getInstance();
+
+        try {
+
+            PreparedStatement getStatement = con.prepareStatement(GET_ALL_DOCTORS);
+            ResultSet result = getStatement.executeQuery();
+            while (result.next()) {
+               Doctor user = new Doctor();
+               user.setUserID(result.getInt("idUser"));
+               user.setUsername(result.getString("user_name"));
+               user.setPassword(result.getString("password"));
+               user.setEmail(result.getString("email"));
+               user.setUserType(result.getInt("type"));
+               usersList.add(user);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Users cannot be retrived from DB!!");
+            return null;
+        }
+
+        return usersList.size() != 0 ? usersList : null;
+		
 		
 	}
 
